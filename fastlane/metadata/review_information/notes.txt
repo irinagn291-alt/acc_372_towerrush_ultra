@@ -1,0 +1,3 @@
+The interface is in English. On Play, start a free or daily climb and tap Place to stack moving platforms. A complete miss ends the climb; Pause also offers a way to finish and save the current result. Open the result's placement review to inspect individual placements. Locations, Collection and Profile show progression, history and settings. The daily goal is 20 floors and can be replayed.
+
+Progress and preferences are stored locally. The app requests no protected-resource permissions and has no account, network API, advertising or in-app purchases. A WidgetKit widget uses an App Group to display a shared progress snapshot; tapping it opens Play.

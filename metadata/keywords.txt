@@ -1,0 +1,1 @@
+stack,tower,arcade,precision,platform,daily,climb,accuracy

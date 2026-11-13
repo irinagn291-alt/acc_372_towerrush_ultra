@@ -1,0 +1,96 @@
+name: TowerRush
+options:
+  deploymentTarget:
+    iOS: '17.0'
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    SWIFT_STRICT_CONCURRENCY: complete
+    IPHONEOS_DEPLOYMENT_TARGET: '17.0'
+targets:
+  TowerRush:
+    type: application
+    platform: iOS
+    sources:
+    - TowerRush
+    - WidgetShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade
+        PRODUCT_NAME: TowerRush
+        INFOPLIST_FILE: Support/AppInfo.plist
+        TARGETED_DEVICE_FAMILY: 1,2
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: false
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: false
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        CODE_SIGN_ENTITLEMENTS: Support/App.entitlements
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+    dependencies:
+    - target: TowerRushWidget
+      embed: true
+  TowerRushTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+    - TowerRushTests
+    dependencies:
+    - target: TowerRush
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade.tests
+  TowerRushUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+    - TowerRushUITests
+    - WidgetTests/WidgetIntegrationTests.swift
+    dependencies:
+    - target: TowerRush
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade.uitests
+  TowerRushWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+    - WidgetShared
+    - WidgetExtension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade.widget
+        INFOPLIST_FILE: WidgetExtension/Info.plist
+        GENERATE_INFOPLIST_FILE: false
+        CODE_SIGN_ENTITLEMENTS: Support/Widget.entitlements
+        APPLICATION_EXTENSION_API_ONLY: true
+        SKIP_INSTALL: true
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        CODE_SIGN_STYLE: Automatic
+  TowerRushWidgetTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+    - WidgetTests/WidgetTests.swift
+    dependencies:
+    - target: TowerRush
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade.widgettests
+schemes:
+  TowerRush:
+    build:
+      targets:
+        TowerRush: all
+    test:
+      targets:
+      - TowerRushTests
+      - TowerRushUITests
+      - TowerRushWidgetTests

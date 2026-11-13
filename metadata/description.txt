@@ -1,0 +1,11 @@
+Build a tower one moving platform at a time in TowerRush. Tap Place to align each platform with the one below. The overlap stays, the overhang is cut away, and a complete miss ends the climb.
+
+Land perfect placements to build a streak. Every fifth consecutive perfect placement restores some platform width, up to its starting size. As your tower grows, the platforms move faster.
+
+Choose a free climb or replay the daily climb, where reaching 20 floors completes the day's goal. Review your results and individual placements, including accuracy, offset and remaining width.
+
+Unlock locations and finishes through your best climbs and perfect placements. Visit Profile to see cumulative statistics, personal bests and recent climbs, or revisit a result and its placement review.
+
+Pause, resume or finish a climb early and save its current result. Adjust sound, haptics and reduced motion in Profile. VoiceOver actions let you place a platform or hear its alignment.
+
+A small or medium widget shows a snapshot of your progress and opens the Play tab. TowerRush is available for iPhone and iPad with iOS 17 or later. The interface is in English.
