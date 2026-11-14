@@ -1,0 +1,136 @@
+workflows:
+  archive_and_export_app:
+    name: Build to TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      xcode: "26.6"
+      groups: [gf_delivery]
+      vars:
+        GF_PROJECT_PATH: "TowerRush.xcodeproj"
+        GF_SCHEME: "TowerRush"
+    scripts:
+      - name: Install project dependencies
+        script: |
+          set -euo pipefail
+          if [[ -f .gitattributes ]]; then git lfs pull; fi
+          if [[ -f Podfile ]]; then pod install --repo-update; fi
+          if [[ -f ci_scripts/macros.json ]]; then
+            mkdir -p "$HOME/Library/org.swift.swiftpm/security"
+            cp ci_scripts/macros.json "$HOME/Library/org.swift.swiftpm/security/macros.json"
+          fi
+      - name: Install signing certificate and App Store profiles
+        script: |
+          set -euo pipefail
+          set +x
+          umask 077
+          private_dir=$(mktemp -d)
+          trap 'rm -rf "$private_dir"' EXIT
+          printf '%s' "$P12_CONTENT_B64" | base64 -D > "$private_dir/signing.p12"
+          extract_key() {
+            openssl pkcs12 "$@" -in "$private_dir/signing.p12" -passin env:P12_PASSWORD -nocerts -nodes |
+              openssl pkey -out "$private_dir/key.pem"
+          }
+          extract_key 2>/dev/null || extract_key -legacy
+          printf '%s' "$ASC_API_KEY_CONTENT" | base64 -D > "$private_dir/asc.p8"
+          keychain initialize
+          # Argument errors in Codemagic CLI can include the entire rejected PEM.
+          signing_status=0
+          app-store-connect fetch-signing-files "$APP_BUNDLE_ID" --type IOS_APP_STORE --create \
+            --issuer-id "$ASC_ISSUER_ID" --key-id "$ASC_KEY_ID" --private-key "@file:$private_dir/asc.p8" \
+            --certificate-key "@file:$private_dir/key.pem" > "$private_dir/signing.log" 2>&1 || signing_status=$?
+          if grep -Eq -- '-----BEGIN|Provided value|Bag Attributes' "$private_dir/signing.log"; then
+            echo "Codemagic signing diagnostics contained credential data and were suppressed." >&2
+          else
+            cat "$private_dir/signing.log"
+          fi
+          if (( signing_status != 0 )); then exit "$signing_status"; fi
+          keychain add-certificates
+          xcode-project use-profiles
+      - name: Archive and export IPA
+        script: |
+          set -euo pipefail
+          flag=--project
+          if [[ "$GF_PROJECT_PATH" == *.xcworkspace ]]; then flag=--workspace; fi
+          xcode-project build-ipa "$flag" "$GF_PROJECT_PATH" --scheme "$GF_SCHEME" \
+            --archive-flags="-skipMacroValidation -skipPackagePluginValidation"
+      - name: Upload IPA to App Store Connect
+        script: |
+          set -euo pipefail
+          umask 077
+          key=$(mktemp)
+          trap 'rm -f "$key"' EXIT
+          printf '%s' "$ASC_API_KEY_CONTENT" | base64 -D > "$key"
+          app-store-connect publish --path 'build/ios/ipa/*.ipa' --issuer-id "$ASC_ISSUER_ID" \
+            --key-id "$ASC_KEY_ID" --private-key "@file:$key"
+    artifacts:
+      - build/ios/ipa/*.ipa
+  deliver_metadata:
+    name: Upload App Store listing
+    instance_type: mac_mini_m2
+    max_build_duration: 90
+    environment:
+      groups: [gf_delivery]
+    scripts:
+      - name: Prepare listing
+        script: |
+          #!/bin/bash
+          set -euo pipefail
+          cd "${BITRISE_SOURCE_DIR:-${CM_BUILD_DIR:-.}}"
+
+          if [ ! -d fastlane/metadata ]; then
+            echo "No fastlane/metadata in the repository — run 'gf metadata generate' first." >&2
+            exit 1
+          fi
+
+          echo "Metadata files:"
+          find fastlane/metadata -type f -name '*.txt' | sort
+
+          if [ ! -f fastlane/Deliverfile ]; then
+            echo "No fastlane/Deliverfile — run 'gf delivery install' first." >&2
+            exit 1
+          fi
+
+          # Name is set when the record is created (Pro / Ultra / … if taken).
+          # Posting name.txt makes Apple add a localization and reject a name
+          # that is already on this app or another one.
+          find fastlane/metadata -name name.txt -delete
+          echo "Dropped name.txt so deliver will not post a listing name."
+
+          # Prepared packages contain reviewed notes. The locale patch checks
+          # their checksum before upload; legacy releases retain their policy.
+          if [ -f fastlane/prepared-metadata.json ]; then
+            echo "Keeping reviewed App Review notes from preparation."
+          else
+            find fastlane/metadata -path '*/review_information/notes.txt' -delete
+            echo "Dropped App Review notes so deliver will not post them."
+          fi
+
+          PHONE="fastlane/metadata/review_information/phone_number.txt"
+          if [ ! -f "$PHONE" ]; then
+            echo "No App Review phone. phone_number.txt is missing — paste an E.164 number and re-run deliver." >&2
+            exit 1
+          fi
+          NUM="$(tr -d '[:space:]' < "$PHONE")"
+          if ! echo "$NUM" | grep -Eq '^\+[0-9]{8,15}$'; then
+            echo "Review phone must be E.164, e.g. +14155551234. Got: ${NUM:-empty}" >&2
+            exit 1
+          fi
+      - name: Upload listing
+        script: |
+          #!/bin/bash
+          set -euo pipefail
+          cd "${BITRISE_SOURCE_DIR:-${CM_BUILD_DIR:-.}}"
+
+          export APP_BUNDLE_ID ASC_KEY_ID ASC_ISSUER_ID ASC_API_KEY_CONTENT
+
+          if ! command -v fastlane >/dev/null 2>&1; then
+            gem install fastlane --no-document
+          fi
+
+          # Deliverfile loads patch_deliver_screenshots.rb (fastlane#30094 /
+          # PR 30150): wait for checksums, delete incomplete rows before retry.
+          # Do not post-process via Spaceship — those calls abort the build
+          # and Grok then "repairs" the wrong API names.
+          # Submit is not done here. An API key is recorded as "API user".
+          fastlane deliver --verbose --submit_for_review false
