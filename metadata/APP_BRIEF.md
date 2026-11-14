@@ -1,4 +1,4 @@
-<!-- gf-brief source=c18eb5191271a804ea49448f3b50c4f191bf9b4da6c39ff8003eaa819f176650 written=2026-11-14T01:47:56+03:00 -->
+<!-- gf-brief source=c18eb5191271a804ea49448f3b50c4f191bf9b4da6c39ff8003eaa819f176650 written=2026-11-14T12:33:51+03:00 -->
 # Tower Rush
 
 ## What it is
