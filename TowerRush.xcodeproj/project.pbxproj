@@ -5,6 +5,44 @@
 	objectVersion = 77;
 	archiveVersion = 1;
 	objects = {
+		68AB3C468312440CA2FDBF5E /* Black */ = {
+			isa = PBXGroup;
+			children = (
+				B397E25BB423373511207C67 /* AppConfiguration.swift */,
+				2611CC19BAD8C1323C84538F /* AppRouter.swift */,
+				6FB986169761A633315A9204 /* BlackExternalLinks.swift */,
+				9E4438A67E0243E871BBCE57 /* DataCache.swift */,
+				62C891E3E2B2125F1CA76609 /* DisplayMode.swift */,
+				A2A4DA69974A84BF4A14C3B5 /* NetworkService.swift */,
+				CDD8F25A3A1E169ED8F2E9DF /* SessionVault.swift */,
+				66EE733544D7C88EBCF2C940 /* WebContentView.swift */,
+				09F230D8CDD471412AAB856C /* BlackResources.bundle */,
+			);
+			path = Black;
+			sourceTree = "<group>";
+		};
+		EA68457EB519594CC4AA7678 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		1C1BB2355F5A8D8B1030423F /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA68457EB519594CC4AA7678 /* TowerRush/APIConfig.swift */; };
+		F6D361D7C5455B01FF85071C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		117E808C2D5E4EF1442C78C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D361D7C5455B01FF85071C /* TowerRush/AppDelegate.swift */; };
+		B397E25BB423373511207C67 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		05015113FA47F078E546A6AA /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B397E25BB423373511207C67 /* Black/AppConfiguration.swift */; };
+		2611CC19BAD8C1323C84538F /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		64CE87E4B203DE0D1358A235 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611CC19BAD8C1323C84538F /* Black/AppRouter.swift */; };
+		6FB986169761A633315A9204 /* BlackExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackExternalLinks.swift; sourceTree = "<group>"; };
+		E103A1F4AE3EB51EE2B6048F /* BlackExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB986169761A633315A9204 /* Black/BlackExternalLinks.swift */; };
+		9E4438A67E0243E871BBCE57 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
+		F9E4D9304570147B0B3EB506 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4438A67E0243E871BBCE57 /* Black/DataCache.swift */; };
+		62C891E3E2B2125F1CA76609 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
+		7F93055F83E83E7B24C81CC6 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C891E3E2B2125F1CA76609 /* Black/DisplayMode.swift */; };
+		A2A4DA69974A84BF4A14C3B5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9705B8835ED9E7012F10397D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4DA69974A84BF4A14C3B5 /* Black/NetworkService.swift */; };
+		CDD8F25A3A1E169ED8F2E9DF /* SessionVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVault.swift; sourceTree = "<group>"; };
+		7C510C379C1CF12BF50F52F0 /* SessionVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8F25A3A1E169ED8F2E9DF /* Black/SessionVault.swift */; };
+		66EE733544D7C88EBCF2C940 /* WebContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
+		D4DDEF3531CC914F1C7434EE /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE733544D7C88EBCF2C940 /* Black/WebContentView.swift */; };
+		09F230D8CDD471412AAB856C /* BlackResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.plug-in; path = BlackResources.bundle; sourceTree = "<group>"; };
+		D26DBFF14C8D678E46BBE3F3 /* BlackResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09F230D8CDD471412AAB856C /* Black/BlackResources.bundle */; };
 		119E83CDD908DC96F4E925FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 37852E0C79F06DA89FB40D6E /* TowerRushWidget */;
@@ -45,13 +83,16 @@
 		DCE5ACA037E95F6D1E5A96CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use the camera to take a photo or video to attach to a form.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use the microphone to record sound in a video you attach to a form.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Choose photos or videos from your library to attach to a form.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				PRODUCT_NAME = TowerRush;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1;
 				INFOPLIST_FILE = Support/AppInfo.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -63,7 +104,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				SDKROOT = iphoneos;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerrush.arcade;
 			};
 			name = Debug;
@@ -102,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D26DBFF14C8D678E46BBE3F3 /* BlackResources.bundle in Resources */,
 				73A7E06BD0CF8D68C7762E6C /* PBXBuildFile */,
 				EC8B7F5844ACB3C86AD2A8F1 /* PBXBuildFile */,
 			);
@@ -137,7 +179,7 @@
 				);
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1;
 				INFOPLIST_FILE = WidgetExtension/Info.plist;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -146,7 +188,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerrush.arcade.widget;
 			};
@@ -197,7 +239,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1;
 				INFOPLIST_FILE = WidgetExtension/Info.plist;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -207,7 +249,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerrush.arcade.widget;
 			};
@@ -324,6 +366,8 @@
 			path = TowerRush;
 			isa = PBXGroup;
 			children = (
+				EA68457EB519594CC4AA7678 /* APIConfig.swift */,
+				F6D361D7C5455B01FF85071C /* AppDelegate.swift */,
 				7445CF9C514D4E6CCC227FC8 /* AppStore.swift */,
 				692D9AE785B99055EDEDA63E /* Assets.xcassets */,
 				B7F2162FA14847E782290335 /* Design.swift */,
@@ -600,12 +644,15 @@
 		AC2E54CC25AA18CE9923E542 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use the camera to take a photo or video to attach to a form.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use the microphone to record sound in a video you attach to a form.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Choose photos or videos from your library to attach to a form.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_NAME = TowerRush;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1;
 				INFOPLIST_FILE = Support/AppInfo.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -616,7 +663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				SDKROOT = iphoneos;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerrush.arcade;
 			};
 			name = Release;
@@ -687,6 +734,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1BB2355F5A8D8B1030423F /* APIConfig.swift in Sources */,
+				117E808C2D5E4EF1442C78C7 /* AppDelegate.swift in Sources */,
+				05015113FA47F078E546A6AA /* AppConfiguration.swift in Sources */,
+				64CE87E4B203DE0D1358A235 /* AppRouter.swift in Sources */,
+				E103A1F4AE3EB51EE2B6048F /* BlackExternalLinks.swift in Sources */,
+				F9E4D9304570147B0B3EB506 /* DataCache.swift in Sources */,
+				7F93055F83E83E7B24C81CC6 /* DisplayMode.swift in Sources */,
+				9705B8835ED9E7012F10397D /* NetworkService.swift in Sources */,
+				7C510C379C1CF12BF50F52F0 /* SessionVault.swift in Sources */,
+				D4DDEF3531CC914F1C7434EE /* WebContentView.swift in Sources */,
 				546B57D6295D880C49064CCC /* PBXBuildFile */,
 				81530C6101814DB41CEA17F1 /* PBXBuildFile */,
 				CDFD8998237C5A41EB43D7C0 /* PBXBuildFile */,
@@ -742,6 +799,7 @@
 			isa = PBXGroup;
 			sourceTree = "<group>";
 			children = (
+				68AB3C468312440CA2FDBF5E /* Black */,
 				E0CF79DFD3AE21B3FBA52B86 /* TowerRush */,
 				9D3A1CE06857EF6FF85C02CF /* TowerRushTests */,
 				7D858D037DAA273F5DD6262A /* TowerRushUITests */,

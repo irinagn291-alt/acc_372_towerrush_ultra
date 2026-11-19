@@ -53,7 +53,7 @@ workflows:
           flag=--project
           if [[ "$GF_PROJECT_PATH" == *.xcworkspace ]]; then flag=--workspace; fi
           xcode-project build-ipa "$flag" "$GF_PROJECT_PATH" --scheme "$GF_SCHEME" \
-            --archive-flags="-skipMacroValidation -skipPackagePluginValidation"
+            --disable-xcpretty --archive-flags="-skipMacroValidation -skipPackagePluginValidation"
       - name: Upload IPA to App Store Connect
         script: |
           set -euo pipefail

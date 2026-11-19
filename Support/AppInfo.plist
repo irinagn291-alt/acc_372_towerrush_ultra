@@ -52,5 +52,11 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(INFOPLIST_KEY_NSCameraUsageDescription)</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(INFOPLIST_KEY_NSMicrophoneUsageDescription)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(INFOPLIST_KEY_NSPhotoLibraryUsageDescription)</string>
 </dict>
 </plist>

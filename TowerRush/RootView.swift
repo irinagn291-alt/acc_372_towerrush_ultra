@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @Binding var widgetURL: URL?
     @Bindable var store: TowerStore
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
@@ -25,7 +26,9 @@ struct RootView: View {
             }
         }
         .foregroundStyle(Ink.text)
-        .onOpenURL { url in
+        .onChange(of: widgetURL, initial: true) { _, pending in
+            guard let url = pending else { return }
+            widgetURL = nil
             if WidgetIdentity.accepts(url) { if !store.loaded { store.load() }
                 #if DEBUG && targetEnvironment(simulator)
                 store.applyWidgetQA(url)

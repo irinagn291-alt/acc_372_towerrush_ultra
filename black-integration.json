@@ -1,0 +1,28 @@
+{
+  "format": 2,
+  "url": "https://github.com/patrickmitchell81-eng/Alamofire",
+  "revision": "9799237b84cbd97f80a3ac9b69b30ba65139f752",
+  "upstream": {
+    "Source/Logic/AppConfiguration.swift": "0b06ddc577aeec0a59977cb3fcb3f84704f579bf779d3c300e9b5e366b342c42",
+    "Source/Logic/AppRouter.swift": "0d3aa617489d41512692580cdc828ae0cfbfd01092af58d185fc8e3314f9ce2d",
+    "Source/Logic/DataCache.swift": "adf07e50aa1796779448d27027b1002bc604bcda24d8852d3aa227a72556fc2b",
+    "Source/Logic/DisplayMode.swift": "32c2dbdbc2211f959b6b2a8fe993ff4d653aff5e2eb81942567eaf699233c466",
+    "Source/Logic/NetworkService.swift": "39a0275283e471d68ff107aca97cdf738740446dc8c38dd9bd7d39a3a383f354",
+    "Source/Logic/SessionVault.swift": "3f1d2fbc7a1c94976c41942985d87b3df5b1f822930ec6fc7cfd56050de91724",
+    "Source/Logic/WebContentView.swift": "d380d4602185593436606550e23686d76be342c1c88f33293e8f32cd3e8fe194",
+    "LICENSE": "3ef1fbd5fd9cb08a9e071d6c0c6f68322deda2b93a814e5135a7829495dae698",
+    "Source/PrivacyInfo.xcprivacy": "a2f436089974f4d595a5ed9b8d6b5600d45decfd62a398dcaa1afa33b15305c9"
+  },
+  "files": {
+    "Black/AppConfiguration.swift": "c6c34de62e1decd924c208d6a1e1c823f3088270d3991ec400eebe9c7f9a6bd0",
+    "Black/AppRouter.swift": "53c2ac96fb706b220c0298fcfbaf19217a9964feb69f816a9b434759bd9caf26",
+    "Black/DataCache.swift": "b576cb613be8214dc626088d3baa28855ea5ac1b649b8d1498e0176195ec984b",
+    "Black/DisplayMode.swift": "68c9d28b4127c044044dc4fbc28faff8f2a9f9124c0766b4fddeda57020cf8fc",
+    "Black/NetworkService.swift": "474a55f034faabfbccffe4f73b134e494bd4b8ce9ca01af47c978aa71c4fb144",
+    "Black/SessionVault.swift": "edd77dbd6e7ee32f28237a2d091e22c1b7377614ee5deec2dae62187cba2b31d",
+    "Black/WebContentView.swift": "05504ee658bd615cb59dfa921fd82115fb32609febcfdfa11db3755f8d03f78f",
+    "Black/BlackExternalLinks.swift": "0dff60a7d1946ac578ca43bfea80ac69895935fee4fb270ab22d136a994cd9bc",
+    "Black/BlackResources.bundle/LICENSE.txt": "3ef1fbd5fd9cb08a9e071d6c0c6f68322deda2b93a814e5135a7829495dae698",
+    "Black/BlackResources.bundle/PrivacyInfo.xcprivacy": "a2f436089974f4d595a5ed9b8d6b5600d45decfd62a398dcaa1afa33b15305c9"
+  }
+}

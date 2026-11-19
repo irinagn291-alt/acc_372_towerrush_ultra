@@ -13,8 +13,11 @@ targets:
     type: application
     platform: iOS
     sources:
-    - TowerRush
+    - path: TowerRush
+      excludes:
+      - Info.plist
     - WidgetShared
+    - Black
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.towerrush.arcade
@@ -29,7 +32,10 @@ targets:
         CURRENT_PROJECT_VERSION: 1
         CODE_SIGN_ENTITLEMENTS: Support/App.entitlements
         GENERATE_INFOPLIST_FILE: true
-        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: 'NO'
+        INFOPLIST_KEY_NSCameraUsageDescription: Use the camera to take a photo or video to attach to a form.
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: Use the microphone to record sound in a video you attach to a form.
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: Choose photos or videos from your library to attach to a form.
     dependencies:
     - target: TowerRushWidget
       embed: true
